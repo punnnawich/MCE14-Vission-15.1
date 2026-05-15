@@ -1,0 +1,8 @@
+# Install core packages
+pip install depthai --force-reinstall
+# Clone the template app
+git clone https://github.com/luxonis/oak-template.git
+# Change directory to the template app
+cd oak-template
+# Install requirements
+pip install -r requirements.txt

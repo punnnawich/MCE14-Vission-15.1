@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.cache/
+
+# Models (too large for GitHub)
+*.engine
+*.pt
+runs/
+
+# Videos (too large)
+*.mp4
+*.avi
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store

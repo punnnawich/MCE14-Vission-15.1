@@ -1,0 +1,34 @@
+# ==========================================
+# ⚙️ MCE14 Vision — Configuration File
+# ==========================================
+# แก้ไขค่าในไฟล์นี้แทนการแก้ในโค้ด Python โดยตรง
+# โปรแกรมจะโหลดค่าเหล่านี้ตอนเริ่มรัน
+
+camera:
+  height_cm: 121.4          # ความสูงของกล้องจากพื้น (cm) — ใช้ checkerboard_extrinsic.py หาค่าได้
+  pitch_deg: 0.0            # มุมก้มเงยของกล้อง (องศา) — ใช้ pitch_calibrate.py หาค่าได้
+  origin_y_distance_cm: 323.3  # ระยะห่างจากกล้องถึงจุด (0,0) ของหุ่นยนต์ (ค่าเริ่มต้น จะถูกเขียนทับเมื่อกด z)
+  origin_x_offset_cm: 0.0     # จุดกึ่งกลางซ้ายขวา (ค่าเริ่มต้น จะถูกเขียนทับเมื่อกด z)
+  fps: 60                   # เฟรมเรตของกล้อง OAK-D
+
+yolo:
+  model_path: "C:\\Users\\punna\\OneDrive\\Documents\\runs\\detect\\redball_model\\weights\\best.engine"
+  confidence_threshold: 0.5  # ค่า Confidence ขั้นต่ำของ YOLO
+
+esp32:
+  ips:                       # IP ของ ESP32 (รองรับหลายตัว)
+    - "192.168.137.33"
+  port: 12345                # Port ของ ESP32
+  udp_repeats: 3             # จำนวนครั้งที่ส่ง UDP ซ้ำ (ลด Packet Loss)
+
+plot:
+  udp_ip: "127.0.0.1"       # IP สำหรับส่งข้อมูลไปวาดกราฟ
+  udp_port: 5005             # Port สำหรับส่งข้อมูลไปวาดกราฟ
+
+tracking:
+  frame_skip: 1              # ข้ามเฟรม (1 = ป้อน KF ทุกเฟรม)
+  min_process_count: 2       # จำนวนรอบ KF ขั้นต่ำก่อนส่งจุดตก
+  landing_deadline_sec: 0.28 # Deadline: ต้องส่งจุดตกภายในกี่วินาทีหลังโยน
+  missing_frames_reset: 15   # จำนวนเฟรมที่หายก่อนรีเซ็ตสถานะ
+  drag_correction: 0.92      # ค่าชดเชยแรงต้านอากาศ (0.92 = ลดระยะ 8%)
+  workspace_cm: 50           # พื้นที่ทำงาน ±cm (ใช้ Clamp จุดตก)
