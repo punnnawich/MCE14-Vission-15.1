@@ -85,7 +85,7 @@ class BallTrackerKF:
             S = np.dot(np.dot(self.H, self.P), self.H.T) + self.R
             
             # Innovation Gating: ปฏิเสธ Outlier ด้วย Mahalanobis Distance
-            mahal_sq = float(np.dot(np.dot(y.T, np.linalg.inv(S)), y))
+            mahal_sq = (y.T @ np.linalg.inv(S) @ y).item()
             if mahal_sq > 16.27:  # chi-squared threshold: 3 DOF, p=0.001
                 pass  # Outlier — ข้ามการอัปเดต
             else:

@@ -87,7 +87,7 @@ class BallTrackerKF:
             # +++ [H2] Innovation Gating: ปฏิเสธ Outlier ด้วย Mahalanobis Distance +++
             # ถ้าค่าที่วัดได้ห่างจากค่าที่ KF คาดการณ์มากผิดปกติ (chi-squared 3DOF, p=0.001)
             # จะข้ามไม่อัปเดต KF เพื่อป้องกัน KF กระโดดตาม YOLO ที่จับผิดวัตถุ
-            mahal_sq = float(np.dot(np.dot(y.T, np.linalg.inv(S)), y))
+            mahal_sq = (y.T @ np.linalg.inv(S) @ y).item()
             if mahal_sq > 16.27:  # chi-squared threshold: 3 DOF, p=0.001
                 # Outlier! ข้ามการอัปเดต
                 pass
